@@ -48,7 +48,7 @@ namespace Application.Services
                 return null;
 
             if (!user.IsActive)
-                return null;
+                return "USER_INACTIVE";
 
             if (user.PasswordHash != dto.Password)
                 return null;

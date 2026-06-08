@@ -1,9 +1,11 @@
 ﻿using Application.DTOs;
 using Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
+    
     [ApiController]
     [Route("api/auth")]
     public class AuthController : ControllerBase
@@ -36,6 +38,8 @@ namespace WebAPI.Controllers
 
             if (token == null)
                 return Unauthorized("Invalid credentials");
+            if(token == "USER_INACTIVE")
+                return Forbid("User is inactive");
 
             return Ok(new { token });
         }
