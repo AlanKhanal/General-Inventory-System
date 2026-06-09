@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Product CRUD</title>
+</head>
+<body>
+
+    <h2>Product Management</h2>
+
+    <!-- FORM -->
+    <input type="hidden" id="productId">
+
+    <input id="name" placeholder="Name">
+    <input id="description" placeholder="Description">
+    <input id="groupId" placeholder="Product Group Id">
+    <input id="uomId" placeholder="Unit of Measure Id">
+
+    <button onclick="saveProduct()">Save</button>
+
+    <hr>
+
+    <!-- TABLE -->
+    <table border="1" width="100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="productTable"></tbody>
+    </table>
+
+    <script src="../js/product.js"></script>
+
+</body>
+</html>

@@ -11,5 +11,14 @@ public class MappingProfile : Profile
     {
         CreateMap<User, UserDto>();
         CreateMap<CreateUserDto, User>();
+        //Product => UOM
+        CreateMap<UnitOfMeasure, UnitOfMeasureDto>().ReverseMap();
+        //Product => ProductGroup
+        CreateMap<ProductGroup, ProductGroupDto>();
+        CreateMap<CreateProductGroupDto, ProductGroup>();
+        //Product => 
+        CreateMap<Product, ProductDto>();
+        CreateMap<CreateProductDto, Product>();
+
     }
 }

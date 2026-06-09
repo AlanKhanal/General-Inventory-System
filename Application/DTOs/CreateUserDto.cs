@@ -1,8 +1,10 @@
-﻿namespace Application.DTOs;
+﻿namespace Application.DTOs
+{
 
-public record CreateUserDto(
-    string Name,
-    string Email,
-    string MobileNo,
-    string Password
-);
+    public record CreateUserDto(
+        string Name,
+        string Email,
+        string MobileNo,
+        string Password
+    );
+}
