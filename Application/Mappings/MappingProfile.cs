@@ -20,5 +20,11 @@ public class MappingProfile : Profile
         CreateMap<Product, ProductDto>();
         CreateMap<CreateProductDto, Product>();
 
+        //Vendor
+        CreateMap<Vendor, VendorDto>();
+
+        //Customer
+        CreateMap<Customer, CustomerDto>();
+
     }
 }

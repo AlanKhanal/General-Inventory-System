@@ -32,7 +32,13 @@ builder.Services.AddScoped<IProductGroupService, ProductGroupService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
 
+//Purchase
+builder.Services.AddScoped<IPurchaseRepository, PurchaseRepository>();
+builder.Services.AddScoped<IPurchaseService, PurchaseService>();
+
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
+
+
 
 // Add services to the container.
 
