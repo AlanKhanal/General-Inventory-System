@@ -19,23 +19,27 @@ namespace Infrastructure.Repositories
             await _context.Purchases.AddAsync(purchase);
         }
 
-        public async Task<Purchase?> GetByIdAsync(int id)
+        public async Task SaveChangesAsync()
         {
-            return await _context.Purchases
-                .Include(p => p.Items)
-                .FirstOrDefaultAsync(p => p.Id == id);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<List<Purchase>> GetAllAsync()
         {
             return await _context.Purchases
                 .Include(p => p.Vendor)
+                .Include(p => p.Items)
+                    .ThenInclude(i => i.Product)
                 .ToListAsync();
         }
 
-        public async Task SaveChangesAsync()
+        public async Task<Purchase?> GetByIdAsync(int id)
         {
-            await _context.SaveChangesAsync();
+            return await _context.Purchases
+                .Include(p => p.Vendor)
+                .Include(p => p.Items)
+                    .ThenInclude(i => i.Product)
+                .FirstOrDefaultAsync(p => p.Id == id);
         }
     }
 }

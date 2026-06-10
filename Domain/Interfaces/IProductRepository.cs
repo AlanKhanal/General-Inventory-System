@@ -11,5 +11,9 @@ namespace Domain.Interfaces
         Task<Product?> GetByIdAsync(int id);
 
         Task SaveChangesAsync();
+
+        //StockNew
+        Task<List<PurchaseItem>> GetPurchaseItemsAsync();
+        Task<List<Product>> GetProductsAsync();
     }
 }

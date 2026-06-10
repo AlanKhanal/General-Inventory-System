@@ -43,5 +43,24 @@ namespace WebAPI.Controllers
                 purchaseId
             });
         }
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var purchases = await _service.GetAllAsync();
+
+            return Ok(purchases);
+        }
+
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var purchase = await _service.GetByIdAsync(id);
+
+            if (purchase == null)
+                return NotFound();
+
+            return Ok(purchase);
+        }
     }
 }

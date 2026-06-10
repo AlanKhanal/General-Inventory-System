@@ -32,9 +32,22 @@ builder.Services.AddScoped<IProductGroupService, ProductGroupService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
 
+
+//Vendor
+builder.Services.AddScoped<IVendorService, VendorService>();
+builder.Services.AddScoped<IVendorRepository, VendorRepository>();
+
+//Customer
+builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+
 //Purchase
 builder.Services.AddScoped<IPurchaseRepository, PurchaseRepository>();
 builder.Services.AddScoped<IPurchaseService, PurchaseService>();
+
+//Sale
+builder.Services.AddScoped<ISaleRepository, SaleRepository>();
+builder.Services.AddScoped<ISaleService, SaleService>();
 
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 

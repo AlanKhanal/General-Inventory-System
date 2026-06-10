@@ -38,5 +38,19 @@ namespace Infrastructure.Repositories
             _context.Products.Update(entity);
             return Task.CompletedTask;
         }
+
+
+        //stocknew
+        public async Task<List<PurchaseItem>> GetPurchaseItemsAsync()
+        {
+            return await _context.PurchaseItems
+                .Include(x => x.Product)
+                .ToListAsync();
+        }
+
+        public async Task<List<Product>> GetProductsAsync()
+        {
+            return await _context.Products.ToListAsync();
+        }
     }
 }

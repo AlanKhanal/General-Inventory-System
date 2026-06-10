@@ -59,4 +59,48 @@ public class ProductService : IProductService
 
         await _repo.SaveChangesAsync();
     }
+    public async Task<List<ProductDto>> GetStockAsync()
+    {
+        var data = await _repo.GetAllAsync();
+        return _mapper.Map<List<ProductDto>>(data);
+    }
+
+
+    //stocknew
+    public async Task<List<CurrentStockDto>> GetCurrentStockAsync()
+    {
+        var products = await _repo.GetProductsAsync();
+        var purchaseItems = await _repo.GetPurchaseItemsAsync();
+
+        var result = new List<CurrentStockDto>();
+
+        foreach (var product in products)
+        {
+            var productPurchases = purchaseItems
+                .Where(x => x.ProductId == product.Id)
+                .ToList();
+
+            decimal totalQty = 0;
+            decimal totalValue = 0;
+
+            foreach (var item in productPurchases)
+            {
+                totalQty += item.Quantity;
+                totalValue += item.Quantity * item.PurchasePrice;
+            }
+
+            decimal avgRate = totalQty == 0 ? 0 : totalValue / totalQty;
+
+            result.Add(new CurrentStockDto
+            {
+                ProductId = product.Id,
+                ProductName = product.Name,
+                Quantity = product.Quantity,
+                AverageRate = avgRate,
+                TotalValue = avgRate * product.Quantity
+            });
+        }
+
+        return result;
+    }
 }

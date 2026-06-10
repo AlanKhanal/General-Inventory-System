@@ -8,6 +8,10 @@ namespace Application.Interfaces
         Task<List<ProductDto>> GetAllAsync();
 
         Task<ProductDto?> GetByIdAsync(int id);
+        Task<List<ProductDto>> GetStockAsync();
+
+        //stocknew
+        Task<List<CurrentStockDto>> GetCurrentStockAsync();
 
         Task UpdateAsync(int id, CreateProductDto dto);
     }

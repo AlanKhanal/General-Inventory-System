@@ -1,4 +1,6 @@
 ﻿using Application.DTOs;
+using Application.DTOs.Purchase;
+using Application.DTOs.Sale;
 using AutoMapper;
 using Domain.Entities;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -25,6 +27,14 @@ public class MappingProfile : Profile
 
         //Customer
         CreateMap<Customer, CustomerDto>();
+
+        //Purchase
+        CreateMap<Purchase, PurchaseDto>();
+        CreateMap<PurchaseItem, PurchaseItemDto>();
+
+        //Sale
+        CreateMap<Sale, SaleDto>();
+        CreateMap<SaleItem, SaleItemDto>();
 
     }
 }

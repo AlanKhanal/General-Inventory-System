@@ -6,10 +6,10 @@ namespace Domain.Interfaces
     {
         Task AddAsync(Purchase purchase);
 
-        Task<Purchase?> GetByIdAsync(int id);
+        Task SaveChangesAsync();
 
         Task<List<Purchase>> GetAllAsync();
 
-        Task SaveChangesAsync();
+        Task<Purchase?> GetByIdAsync(int id);
     }
 }

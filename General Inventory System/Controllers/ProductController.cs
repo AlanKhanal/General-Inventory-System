@@ -48,5 +48,10 @@ public class ProductController : ControllerBase
         await _service.UpdateAsync(id, dto);
         return Ok("Updated successfully");
     }
-
+    [HttpGet("stock")]
+    public async Task<IActionResult> GetStock()
+    {
+        var result = await _service.GetCurrentStockAsync();
+        return Ok(result);
+    }
 }
