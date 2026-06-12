@@ -4,16 +4,24 @@
     background: #f4f6f9;
 }
 
+/* =====================
+   LAYOUT
+===================== */
 .container {
     display: flex;
+    min-height: 100vh;
 }
 
 .sidebar {
     width: 220px;
-    height: 100vh;
     background: #1f2937;
     color: white;
     padding-top: 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
 }
 
     .sidebar a {
@@ -21,44 +29,156 @@
         padding: 12px;
         color: white;
         text-decoration: none;
+        transition: background 0.2s ease;
     }
 
         .sidebar a:hover {
             background: #374151;
         }
 
+    .sidebar .active {
+        background: #111827;
+        font-weight: bold;
+    }
+
 .main {
     flex: 1;
+    margin-left: 220px;
     padding: 20px;
 }
 
+/* =====================
+   FORM BOX
+===================== */
 .form-box {
     background: white;
     padding: 15px;
     margin-bottom: 20px;
     border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-input {
+    .form-box h2,
+    .form-box h3 {
+        margin-top: 0;
+    }
+
+/* =====================
+   INPUTS
+===================== */
+input, select, textarea {
     width: 100%;
     padding: 10px;
     margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
+    input:focus,
+    select:focus,
+    textarea:focus {
+        outline: none;
+        border-color: #3b82f6;
+    }
+
+/* =====================
+   TABLE
+===================== */
 table {
     width: 100%;
     border-collapse: collapse;
     background: white;
+    border-radius: 6px;
+    overflow: hidden;
 }
 
-    table th, table td {
-        border: 1px solid #ddd;
+    table th,
+    table td {
+        border: 1px solid #e5e7eb;
         padding: 10px;
+        text-align: left;
     }
 
+    table th {
+        background: #f3f4f6;
+    }
+
+/* =====================
+   BUTTONS
+===================== */
 button {
     padding: 8px 12px;
     margin-right: 5px;
     border: none;
     cursor: pointer;
+    border-radius: 4px;
+    transition: 0.2s ease;
+}
+
+    button:hover {
+        opacity: 0.9;
+    }
+
+/* Optional button styles (use later in JS/UI) */
+.btn-primary {
+    background: #3b82f6;
+    color: white;
+}
+
+.btn-danger {
+    background: #ef4444;
+    color: white;
+}
+
+.btn-success {
+    background: #10b981;
+    color: white;
+}
+
+.btn-warning {
+    background: #f59e0b;
+    color: white;
+}
+
+/* =====================
+   UTILITIES
+===================== */
+.text-center {
+    text-align: center;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+/* =====================
+   RESPONSIVE (basic)
+===================== */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .main {
+        margin-left: 0;
+    }
+
+    .container {
+        flex-direction: column;
+    }
 }

@@ -3,7 +3,6 @@
 window.onload = function () {
     loadVendors();
     loadProducts();
-    addItemRow();
 };
 
 

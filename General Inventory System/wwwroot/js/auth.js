@@ -1,5 +1,5 @@
 ﻿const API = "https://localhost:7293/api/auth";
-
+/*const API = "https://inventorysystem.somee.com/api/auth";*/
 // LOGIN
 async function login() {
 

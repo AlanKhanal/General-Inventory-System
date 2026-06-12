@@ -1,5 +1,5 @@
 ﻿const BASE_URL = "https://localhost:7293/api";
-
+/*const API = "https://inventorysystem.somee.com/api/auth";*/
 // GET TOKEN
 function getToken() {
     return localStorage.getItem("token");
