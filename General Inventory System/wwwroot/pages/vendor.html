@@ -1,10 +1,61 @@
-﻿<h2>Vendor</h2>
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vendor</title>
+    <link rel="stylesheet" href="../css/vendor.css">
+</head>
+<body>
 
-<input type="hidden" id="vendorId">
+    <div class="container">
 
-<input id="name" placeholder="Name">
-<input id="description" placeholder="Description">
+        <!-- NAVBAR -->
+        <div id="navbar"></div>
 
-<button onclick="saveVendor()">Save</button>
+        <!-- MAIN -->
+        <div class="main">
 
-<table id="vendorTable"></table>
+            <h2>Vendor</h2>
+
+            <!-- FORM -->
+            <div class="form-box">
+
+                <input type="hidden" id="vendorId">
+
+                <input type="text" id="name" placeholder="Vendor Name">
+                <input type="text" id="description" placeholder="Description">
+
+                <button onclick="saveVendor()">Save</button>
+                <button onclick="clearForm()">Clear</button>
+
+                <p id="msg"></p>
+
+            </div>
+
+            <!-- TABLE -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="vendorTable"></tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/guard.js"></script>
+    <script src="../js/layout.js"></script>
+    <script src="../js/vendor.js"></script>
+
+    <script>
+        protectPage();
+    </script>
+
+</body>
+</html>

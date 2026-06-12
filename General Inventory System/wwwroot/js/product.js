@@ -1,98 +1,117 @@
-﻿const apiUrl = "/api/product";
+﻿let groupMap = {};
+let uomMap = {};
 
-window.onload = function () {
-    const token = localStorage.getItem("token");
+document.addEventListener("DOMContentLoaded", () => {
+    loadAll();
+});
 
-    if (!token) {
-        window.location.href = "/login.html";
+
+// =====================
+// MASTER LOADER
+// =====================
+async function loadAll() {
+    await loadDropdownData();
+    await loadProducts();
+}
+
+
+// =====================
+// LOAD GROUP + UOM FOR LOOKUP
+// =====================
+async function loadDropdownData() {
+    try {
+        const groups = await apiRequest("/productgroup");
+        const uoms = await apiRequest("/unitofmeasure");
+
+        // ProductGroup (assumed raw array)
+        groups.forEach(g => {
+            groupMap[g.id] = g.name;
+        });
+
+        // UOM (wrapped response)
+        uoms.data.forEach(u => {
+            uomMap[u.id] = u.name;
+        });
+
+    } catch (err) {
+        console.error("Dropdown load error:", err);
+    }
+}
+
+
+// =====================
+// LOAD PRODUCTS
+// =====================
+async function loadProducts() {
+    try {
+        const data = await apiRequest("/product");
+        renderTable(data);
+
+    } catch (err) {
+        console.error("Product load error:", err);
+    }
+}
+
+
+// =====================
+// SAVE PRODUCT (unchanged logic)
+// =====================
+async function saveProduct() {
+
+    const payload = {
+        name: document.getElementById("name").value,
+        description: document.getElementById("description").value,
+        productGroupId: document.getElementById("groupId").value,
+        unitOfMeasureId: document.getElementById("uomId").value,
+        status: document.getElementById("status").value === "true"
+    };
+
+    await apiRequest("/product", "POST", payload);
+
+    clearForm();
+    loadProducts();
+}
+
+
+// =====================
+// TABLE RENDER (FIXED)
+// =====================
+function renderTable(data) {
+
+    const table = document.getElementById("productTable");
+    table.innerHTML = "";
+
+    if (!data || data.length === 0) {
+        table.innerHTML = `<tr><td colspan="6">No products found</td></tr>`;
         return;
     }
 
-    loadProducts();
-};
+    data.forEach(p => {
 
-function authHeader() {
-    return {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("token")
-    };
+        const groupName = groupMap[p.productGroupId] ?? "Unknown";
+        const uomName = uomMap[p.unitOfMeasureId] ?? "Unknown";
+
+        table.innerHTML += `
+            <tr>
+                <td>${p.name}</td>
+                <td>${p.description}</td>
+                <td>${groupName}</td>
+                <td>${uomName}</td>
+                <td>${p.status ? "Active" : "Inactive"}</td>
+                <td>
+                    <button onclick='editProduct(${JSON.stringify(p)})'>Edit</button>
+                </td>
+            </tr>
+        `;
+    });
 }
-function loadProducts() {
-    fetch(apiUrl, {
-        headers: authHeader()
-    })
-        .then(res => {
-            if (!res.ok) throw new Error("Failed to fetch products");
-            return res.json();
-        })
-        .then(data => {
-            let table = document.getElementById("productTable");
-            table.innerHTML = "";
 
-            data.forEach(p => {
-                table.innerHTML += `
-                    <tr>
-                        <td>${p.id}</td>
-                        <td>${p.name}</td>
-                        <td>${p.description ?? ''}</td>
-                        <td>
-                            <button onclick="editProduct(${p.id})">Edit</button>
-                        </td>
-                    </tr>
-                `;
-            });
-        })
-        .catch(err => console.log("Load error:", err));
-}
-function saveProduct() {
-    let id = document.getElementById("productId").value;
 
-    let product = {
-        name: document.getElementById("name").value,
-        description: document.getElementById("description").value,
-        productGroupId: parseInt(document.getElementById("groupId").value),
-        unitOfMeasureId: parseInt(document.getElementById("uomId").value)
-    };
-
-    let url = id ? `${apiUrl}/${id}` : apiUrl;
-    let method = id ? "PUT" : "POST";
-
-    fetch(url, {
-        method: method,
-        headers: authHeader(),
-        body: JSON.stringify(product)
-    })
-        .then(res => {
-            if (!res.ok) throw new Error("Save failed");
-            return res.text();
-        })
-        .then(() => {
-            loadProducts();
-            clearForm();
-        })
-        .catch(err => console.log("Save error:", err));
-}
-function editProduct(id) {
-    fetch(`${apiUrl}/${id}`, {
-        headers: authHeader()
-    })
-        .then(res => {
-            if (!res.ok) throw new Error("Failed to fetch product");
-            return res.json();
-        })
-        .then(p => {
-            document.getElementById("productId").value = p.id;
-            document.getElementById("name").value = p.name;
-            document.getElementById("description").value = p.description;
-            document.getElementById("groupId").value = p.productGroupId;
-            document.getElementById("uomId").value = p.unitOfMeasureId;
-        })
-        .catch(err => console.log("Edit error:", err));
-}
+// =====================
 function clearForm() {
-    document.getElementById("productId").value = "";
     document.getElementById("name").value = "";
     document.getElementById("description").value = "";
     document.getElementById("groupId").value = "";
     document.getElementById("uomId").value = "";
+    document.getElementById("status").value = "true";
 }

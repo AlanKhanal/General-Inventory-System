@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stock</title>
+    <link rel="stylesheet" href="../css/stock.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- NAVBAR -->
+        <div id="navbar"></div>
+        <!-- MAIN -->
+        <div class="main">
+
+            <h2>Current Stock</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Average Rate</th>
+                        <th>Total Value</th>
+                    </tr>
+                </thead>
+
+                <tbody id="stockTable"></tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/guard.js"></script>
+    <script src="../js/layout.js"></script>
+    <script src="../js/stock.js"></script>
+
+    <script>protectPage();</script>
+
+</body>
+</html>

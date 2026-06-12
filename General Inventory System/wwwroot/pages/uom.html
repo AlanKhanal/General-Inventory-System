@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Customer</title>
-    <link rel="stylesheet" href="../css/customer.css">
+    <title>Unit of Measure</title>
+    <link rel="stylesheet" href="../css/uom.css">
 </head>
 <body>
 
@@ -15,34 +15,34 @@
         <!-- MAIN -->
         <div class="main">
 
-            <h2>Customer</h2>
+            <h2>Unit of Measure</h2>
 
+            <!-- FORM (ONLY CREATE SUPPORTED) -->
             <div class="form-box">
 
-                <input type="hidden" id="customerId">
-
-                <input type="text" id="name" placeholder="Customer Name">
+                <input type="text" id="name" placeholder="Name (KG, PCS)">
+                <input type="text" id="code" placeholder="Code (kg, pcs)">
                 <input type="text" id="description" placeholder="Description">
-                <input type="text" id="mobile" placeholder="Mobile No">
 
-                <button onclick="saveCustomer()">Save</button>
+                <button onclick="saveUom()">Save</button>
                 <button onclick="clearForm()">Clear</button>
 
                 <p id="msg"></p>
 
             </div>
 
+            <!-- TABLE -->
             <table>
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Code</th>
                         <th>Description</th>
-                        <th>Mobile</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
 
-                <tbody id="customerTable"></tbody>
+                <tbody id="uomTable"></tbody>
             </table>
 
         </div>
@@ -51,7 +51,7 @@
     <script src="../js/api.js"></script>
     <script src="../js/guard.js"></script>
     <script src="../js/layout.js"></script>
-    <script src="../js/customer.js"></script>
+    <script src="../js/uom.js"></script>
 
     <script>
         protectPage();

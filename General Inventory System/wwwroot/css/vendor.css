@@ -1,0 +1,110 @@
+﻿body {
+    margin: 0;
+    font-family: Arial;
+    background: #f4f6f9;
+}
+
+/* LAYOUT */
+.container {
+    display: flex;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background: #1f2937;
+    color: white;
+    padding-top: 20px;
+}
+
+    .sidebar a {
+        display: block;
+        padding: 12px;
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+        .sidebar a:hover {
+            background: #374151;
+        }
+
+/* MAIN AREA */
+.main {
+    flex: 1;
+    padding: 20px;
+}
+
+    /* PAGE TITLE */
+    .main h2 {
+        margin-bottom: 15px;
+    }
+
+/* FORM BOX */
+.form-box {
+    background: white;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* INPUTS */
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+    table th, table td {
+        border-bottom: 1px solid #eee;
+        padding: 12px;
+        text-align: left;
+        font-size: 14px;
+    }
+
+    table th {
+        background: #f8f9fb;
+        font-weight: bold;
+    }
+
+/* BUTTONS */
+button {
+    padding: 8px 12px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+/* PRIMARY BUTTON */
+button {
+    background: #2563eb;
+    color: white;
+}
+
+    button:hover {
+        opacity: 0.9;
+    }
+
+/* MESSAGE */
+#msg {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #333;
+}

@@ -1,38 +1,74 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Product CRUD</title>
+    <meta charset="UTF-8">
+    <title>Product</title>
+    <link rel="stylesheet" href="../css/product.css">
 </head>
 <body>
 
-    <h2>Product Management</h2>
+    <div class="container">
 
-    <!-- FORM -->
-    <input type="hidden" id="productId">
+        <!-- NAVBAR -->
+        <div id="navbar"></div>
 
-    <input id="name" placeholder="Name">
-    <input id="description" placeholder="Description">
-    <input id="groupId" placeholder="Product Group Id">
-    <input id="uomId" placeholder="Unit of Measure Id">
+        <!-- MAIN -->
+        <div class="main">
 
-    <button onclick="saveProduct()">Save</button>
+            <h2>Product</h2>
 
-    <hr>
+            <!-- FORM -->
+            <div class="form-box">
 
-    <!-- TABLE -->
-    <table border="1" width="100%">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody id="productTable"></tbody>
-    </table>
+                <input type="hidden" id="productId">
 
+                <input type="text" id="name" placeholder="Product Name">
+                <input type="text" id="description" placeholder="Description">
+
+                <select id="groupId"></select>
+                <select id="uomId"></select>
+
+                <select id="status">
+                    <option value="true">Active</option>
+                    <option value="false">Inactive</option>
+                </select>
+
+                <button onclick="saveProduct()">Save</button>
+                <button onclick="clearForm()">Clear</button>
+
+                <button onclick="loadStock()">View Stock</button>
+
+                <p id="msg"></p>
+
+            </div>
+
+            <!-- TABLE -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Group</th>
+                        <th>UOM</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="productTable"></tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/guard.js"></script>
+    <script src="../js/layout.js"></script>
     <script src="../js/product.js"></script>
+
+    <script>
+        protectPage();
+    </script>
 
 </body>
 </html>

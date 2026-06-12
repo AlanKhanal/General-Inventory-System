@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Customer</title>
-    <link rel="stylesheet" href="../css/customer.css">
+    <title>Product Group</title>
+    <link rel="stylesheet" href="../css/product-group.css">
 </head>
 <body>
 
@@ -15,34 +15,34 @@
         <!-- MAIN -->
         <div class="main">
 
-            <h2>Customer</h2>
+            <h2>Product Group</h2>
 
+            <!-- FORM -->
             <div class="form-box">
 
-                <input type="hidden" id="customerId">
+                <input type="hidden" id="groupId">
 
-                <input type="text" id="name" placeholder="Customer Name">
+                <input type="text" id="name" placeholder="Group Name">
                 <input type="text" id="description" placeholder="Description">
-                <input type="text" id="mobile" placeholder="Mobile No">
 
-                <button onclick="saveCustomer()">Save</button>
+                <button onclick="saveGroup()">Save</button>
                 <button onclick="clearForm()">Clear</button>
 
                 <p id="msg"></p>
 
             </div>
 
+            <!-- TABLE -->
             <table>
                 <thead>
                     <tr>
                         <th>Name</th>
                         <th>Description</th>
-                        <th>Mobile</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
 
-                <tbody id="customerTable"></tbody>
+                <tbody id="groupTable"></tbody>
             </table>
 
         </div>
@@ -51,7 +51,7 @@
     <script src="../js/api.js"></script>
     <script src="../js/guard.js"></script>
     <script src="../js/layout.js"></script>
-    <script src="../js/customer.js"></script>
+    <script src="../js/product-group.js"></script>
 
     <script>
         protectPage();

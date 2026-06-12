@@ -1,26 +1,88 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Dashboard</title>
+    <meta charset="UTF-8">
+    <title>Dashboard - Inventory System</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body>
 
-    <h1>Dashboard</h1>
+    <div class="container">
 
-    <button onclick="logout()">Logout</button>
+        <!-- SIDEBAR -->
+        <!-- NAVBAR -->
+        <div id="navbar"></div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main">
+
+            <!-- TOP BAR -->
+            <div class="navbar">
+                <h2>Dashboard</h2>
+                <div>
+                    <span id="userInfo"></span>
+                </div>
+            </div>
+
+            <!-- STATS CARDS -->
+            <div class="cards">
+
+                <div class="card">
+                    <h3>Products</h3>
+                    <p id="productCount">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Vendors</h3>
+                    <p id="vendorCount">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Customers</h3>
+                    <p id="customerCount">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Stock Items</h3>
+                    <p id="stockCount">0</p>
+                </div>
+
+            </div>
+
+            <br>
+
+            <!-- STOCK SUMMARY SECTION -->
+            <div class="stock-section">
+
+                <h3>Stock Overview</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Qty</th>
+                            <th>Avg Rate</th>
+                            <th>Total Value</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="stockTable">
+                        <!-- JS will populate -->
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="../js/guard.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/layout.js"></script>
+    <script src="../js/dashboard.js"></script>
 
     <script>
-    const token = localStorage.getItem("token");
-
-    // simple protection
-    if (!token) {
-        window.location.href = "login.html";
-    }
-
-    function logout() {
-        localStorage.removeItem("token");
-        window.location.href = "login.html";
-    }
+        protectPage();
     </script>
 
 </body>

@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Purchase</title>
+    <link rel="stylesheet" href="../css/purchase.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- NAVBAR -->
+        <div id="navbar"></div>
+
+        <!-- MAIN -->
+        <div class="main">
+
+            <h2>Purchase Entry</h2>
+
+            <!-- HEADER -->
+            <div class="form-box">
+
+                <label>Vendor</label>
+                <select id="vendorId"></select>
+
+                <button onclick="addItemRow()">+ Add Item</button>
+                <button onclick="submitPurchase()">Submit Purchase</button>
+
+                <p id="msg"></p>
+            </div>
+
+            <!-- ITEM TABLE -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Qty</th>
+                        <th>Purchase Price</th>
+                        <th>Sales Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="itemTable"></tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/guard.js"></script>
+    <script src="../js/layout.js"></script>
+    <script src="../js/purchase.js"></script>
+
+    <script>
+        protectPage();
+    </script>
+
+</body>
+</html>

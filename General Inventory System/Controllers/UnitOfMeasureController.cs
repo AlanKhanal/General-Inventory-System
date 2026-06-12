@@ -32,13 +32,20 @@ public async Task<IActionResult> GetAll()
         userId = userId
     });
 }
-
-[HttpPost]
+    [HttpPost]
     public async Task<IActionResult> Create(CreateUnitOfMeasureDto dto)
     {
-        var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value);
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        var userId = int.Parse(
+            User.FindFirst(ClaimTypes.NameIdentifier)?.Value
+        );
 
         var result = await _service.CreateAsync(dto, userId);
+
         return Ok(result);
     }
 }
