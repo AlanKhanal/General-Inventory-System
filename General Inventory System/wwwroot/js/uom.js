@@ -44,7 +44,7 @@ function saveUOM() {
         description
     };
 
-    fetch("/api/unitofmeasure", {
+    fetch("/unitofmeasure", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
